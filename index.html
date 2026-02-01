@@ -13,68 +13,78 @@
 </head>
 <body>
 
+<!-- LOGIN / SIGNUP -->
 <div id="loginPage" class="container">
-<h1>Login / Signup</h1>
-<input type="text" id="username" placeholder="Enter Name">
-<input type="email" id="email" placeholder="Enter Email">
-<input type="password" id="password" placeholder="Enter Password">
-<button onclick="loginSignup()">Login / Signup</button>
+  <h1>Login / Signup</h1>
+  
+  <input type="text" id="username" placeholder="Enter Name (Signup only)">
+  <input type="email" id="email" placeholder="Enter Email">
+  <input type="password" id="password" placeholder="Enter Password">
+
+  <button onclick="login()">Login</button>
+  <button onclick="signup()">Signup</button>
 </div>
 
+<!-- DASHBOARD / SECTIONS -->
 <div id="dashboardPage" class="container" style="display:none;">
-<div class="nav">
-<div onclick="showPage('dashboard')">Dashboard</div>
-<div onclick="showPage('packages')">Packages</div>
-<div onclick="showPage('deposit')">Deposit</div>
-<div onclick="showPage('withdraw')">Withdraw</div>
-<div onclick="logout()">Logout</div>
+  <div class="nav">
+    <div onclick="showPage('dashboard')">Dashboard</div>
+    <div onclick="showPage('packages')">Packages</div>
+    <div onclick="showPage('deposit')">Deposit</div>
+    <div onclick="showPage('withdraw')">Withdraw</div>
+    <div onclick="logout()">Logout</div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" style="display:block;">
+    <h2>Welcome, <span id="userDisplay"></span></h2>
+    <div class="dashboard-box">
+      <div class="dashboard-item">Total Balance<br>$<span id="totalBalance">0</span></div>
+      <div class="dashboard-item">Earned Income<br>$<span id="earnedIncome">0</span></div>
+      <div class="dashboard-item">Referral Income<br>$<span id="referralIncome">0</span></div>
+      <div class="dashboard-item">
+        <span id="countdown">24:00:00</span><br>
+        <button id="taskBtn" onclick="claimTask()" disabled>Claim Income</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACKAGES -->
+  <div id="packages" style="display:none;">
+    <h2>Packages</h2>
+    <div id="packageContainer"></div>
+  </div>
+
+  <!-- DEPOSIT -->
+  <div id="deposit" style="display:none;">
+    <h2>Deposit Funds</h2>
+    <form onsubmit="depositFunds(event)">
+      <label>Amount ($):</label>
+      <input type="number" id="depositAmount" min="10" required>
+      <label>JazzCash Number: <b>03007927545 (Umair Ashraf)</b></label>
+      <label>Upload Screenshot:</label>
+      <input type="file" id="depositScreenshot" accept="image/*" required>
+      <button type="submit">Submit Deposit</button>
+    </form>
+  </div>
+
+  <!-- WITHDRAW -->
+  <div id="withdraw" style="display:none;">
+    <h2>Withdraw Funds</h2>
+    <form onsubmit="withdrawFunds(event)">
+      <label>Amount ($):</label>
+      <input type="number" id="withdrawAmount" min="1" required>
+      <label>Select Method:</label>
+      <select id="withdrawMethod">
+        <option value="JazzCash">JazzCash</option>
+        <option value="EasyPaisa">EasyPaisa</option>
+      </select>
+      <label>Account Number:</label>
+      <input type="text" id="withdrawNumber" placeholder="Enter Number" required>
+      <button type="submit">Submit Withdrawal</button>
+    </form>
+  </div>
 </div>
 
-<div id="dashboard" style="display:block;">
-<h2>Welcome, <span id="userDisplay"></span></h2>
-<div class="dashboard-box">
-<div class="dashboard-item">Total Balance<br>$<span id="totalBalance">0</span></div>
-<div class="dashboard-item">Earned Income<br>$<span id="earnedIncome">0</span></div>
-<div class="dashboard-item">Referral Income<br>$<span id="referralIncome">0</span></div>
-<div class="dashboard-item">
-<span id="countdown">24:00:00</span><br>
-<button id="taskBtn" onclick="claimTask()" disabled>Claim Income</button>
-</div>
-</div>
-</div>
-
-<div id="packages" style="display:none;">
-<h2>Packages</h2>
-<div id="packageContainer"></div>
-</div>
-
-<div id="deposit" style="display:none;">
-<h2>Deposit Funds</h2>
-<form onsubmit="depositFunds(event)">
-<label>Amount ($):</label>
-<input type="number" id="depositAmount" min="10" required>
-<label>JazzCash Number: <b>03007927545 (Umair Ashraf)</b></label>
-<label>Upload Screenshot:</label>
-<input type="file" id="depositScreenshot" accept="image/*" required>
-<button type="submit">Submit Deposit</button>
-</form>
-</div>
-
-<div id="withdraw" style="display:none;">
-<h2>Withdraw Funds</h2>
-<form onsubmit="withdrawFunds(event)">
-<label>Amount ($):</label>
-<input type="number" id="withdrawAmount" min="1" required>
-<label>Select Method:</label>
-<select id="withdrawMethod">
-<option value="JazzCash">JazzCash</option>
-<option value="EasyPaisa">EasyPaisa</option>
-</select>
-<label>Account Number:</label>
-<input type="text" id="withdrawNumber" placeholder="Enter Number" required>
-<button type="submit">Submit Withdrawal</button>
-</form>
-</div>
-</div>
 </body>
 </html>
